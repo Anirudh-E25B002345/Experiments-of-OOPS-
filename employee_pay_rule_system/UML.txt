@@ -1,0 +1,39 @@
+UML CLASS DIAGRAM (text)
+
+                    <<abstract>>
+                       Employee
+              --------------------------
+              # id : int
+              # name : string
+              # deduction : double
+              --------------------------
+              + calculateSalary() : double {abstract}
+              + employeeType() : string {abstract}
+              + display() : void {abstract}
+              + toFileRecord() : string {abstract}
+                         ^
+              /         \
+             /           \
+ FullTimeEmployee       PartTimeEmployee
+------------------     ------------------
+- monthlyBasic         - hourlyRate
+- allowance            - hoursWorked
+------------------     ------------------
++ calculateSalary()    + calculateSalary()
++ display()            + display()
++ setters/getters      + setters/getters
+
+PayRuleManager
+-----------------------------------
+- employees : vector<unique_ptr<Employee>>
+- dataFile : string
+-----------------------------------
++ addEmployee()
++ listEmployees()
++ searchEmployee()
++ updatePayRule()
++ deleteEmployee()
++ payrollReport()
++ loadFromFile()
+
+PayRuleManager owns Employee objects through unique_ptr. Employee is an abstract base class.
